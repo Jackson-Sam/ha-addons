@@ -17,12 +17,15 @@ map:
 ingress: true
 ingress_port: 5800
 ports:
-  5800/tcp: null
-  5900/tcp: null
+  5800/tcp: 5800
+  5900/tcp: 5900
 environment:
   # Required to write to /data
   USER_ID: "0"
   KEEP_APP_RUNNING: "1"
+  DISPLAY_WIDTH: "1024"
+  DISPLAY_HEIGHT: "768"
+  DARK_MODE: "1"
 # Sound support, not tested and requires special version of noVNC
 #devices:
 #  - /dev/snd
@@ -31,6 +34,9 @@ image: "ghcr.io/mincka/firefox-{arch}"
 # To pass options as environment variables (thanks to legacy mode), they must be either "int" or "str" ("str?" will be ignored).
 legacy: true
 options:
+  DISPLAY_WIDTH: "1024"
+  DISPLAY_HEIGHT: "768"
+  DARK_MODE: "1"
   VNC_PASSWORD: ""
   ENABLE_CJK_FONT: "0"
   FF_OPEN_URL: ""
@@ -56,9 +62,9 @@ schema:
   INSTALL_PACKAGES: str
   PACKAGES_MIRROR: str
   CONTAINER_DEBUG: str
-  DISPLAY_WIDTH: str
-  DISPLAY_HEIGHT: str
-  DARK_MODE: str
+  DISPLAY_WIDTH: int
+  DISPLAY_HEIGHT: int
+  DARK_MODE: int
   SECURE_CONNECTION: str
   SECURE_CONNECTION_VNC_METHOD: str
   SECURE_CONNECTION_CERTS_CHECK_INTERVAL: str
